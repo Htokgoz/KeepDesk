@@ -1,0 +1,4 @@
+gkeepapi==0.17.1
+gpsoauth
+keyring
+pyinstaller

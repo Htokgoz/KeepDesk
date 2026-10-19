@@ -1,0 +1,44 @@
+KeepDesk 1.3.0 — kaynak kod paketi
+===================================
+
+İçindekiler
+-----------
+app/               uygulama kaynak kodu (Python 3.14 + tkinter)
+  main.py          giriş noktası, ekranlar, pencere yönetimi
+  service.py       Google Keep katmanı (giriş, senkron, CRUD)
+  store.py         ayarlar + DPAPI ile şifreli oturum anahtarı
+  paths.py         %APPDATA% / paket yolları
+  theme.py         renkler, yazı tipleri, ttk stilleri
+  ui/              login, ana pano, not editörü, ikonlar, widget'lar
+assets/            icon.ico, ca-bundle.pem, version_info.txt
+docs/              ekran görüntüleri
+tools/             yardımcı betikler (bağımlılık indirme, ikon, testler)
+KeepDesk.spec      tek dosyalık exe derleme tanımı
+KeepDeskDir.spec   klasör (onedir) derleme tanımı
+requirements.txt   bağımlılık listesi
+README.md          ayrıntılı dokümantasyon
+
+Hızlı başlangıç (Windows, Python 3.14 gerekir)
+---------------------------------------------
+1) Bağımlılıkları indir (pip gerekmez, PyPI'dan wheel çeker):
+
+     python tools\fetch_deps.py --target vendor gkeepapi
+
+2) Uygulamayı çalıştır:
+
+     python run.py
+
+3) İstersen tek dosyalık exe üret:
+
+     python tools\fetch_deps.py --target vendor_build pyinstaller
+     $env:PYTHONPATH = "$PWD\vendor_build"
+     python -m PyInstaller --noconfirm --distpath dist --workpath build KeepDesk.spec
+
+Notlar
+------
+• vendor/ ve vendor_build/ klasörleri pakete dahil değildir; 1. ve 3. adım
+  bunları yeniden oluşturur.
+• Giriş için Google'ın verdiği tek kullanımlık oauth_token kodu gerekir;
+  ayrıntılar README.md "Giriş" bölümünde.
+• Testler: python tools\selftest_flow.py  (ayrıca selftest_labels.py,
+  selftest_editor_ops.py, selftest_carddrag.py)

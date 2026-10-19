@@ -1,0 +1,75 @@
+KeepDesk 1.2.2 — Google Keep masaüstü istemcisi
+=================================================
+
+NASIL ÇALIŞTIRILIR
+------------------
+1. Bu klasördeki KeepDesk.exe dosyasını çift tıklayın.
+   (İlk açılış 2-5 saniye sürebilir; tek dosyalık paket açılıyor.)
+   İsterseniz exe'yi başka bir klasöre, örn. C:\Tools\KeepDesk, kopyalayabilirsiniz.
+2. SmartScreen "bilinmeyen yayıncı" uyarısı verirse:
+   "Daha fazla bilgi" → "Yine de çalıştır".
+
+GİRİŞ — NORMAL ŞİFRE ÇALIŞMAZ
+-----------------------------
+Google, üçüncü taraf uygulamalara normal hesap şifresiyle giriş izni vermiyor.
+KeepDesk'te varsayılan yöntem "TARAYICI İLE GİRİŞ"tir:
+
+  1) Giriş ekranındaki "1) Google giriş sayfasını aç" düğmesine basın.
+     Tarayıcıda accounts.google.com/EmbeddedSetup açılır.
+  2) Hesabınızla giriş yapın, çıkan ekranda "Kabul ediyorum"a basın.
+     Sonrasında sayfa boş görünebilir; bu normaldir, kapatmayın.
+  3) Adres çubuğundaki KİLİT simgesine tıklayın:
+        Çerezler ve site verileri  →  Yönet  →  accounts.google.com
+        →  oauth_token
+  4) "İçerik" alanındaki değerin TAMAMINI kopyalayın (oauth2_4/... ile başlar).
+  5) KeepDesk'e yapıştırın ve "Kodu doğrula ve bağlan"a basın.
+
+Kod tek kullanımlıktır ve kısa süre geçerlidir. Hata alırsanız tarayıcıda
+sayfayı yenileyip YENİ bir kod kopyalayın. KeepDesk bu kodu kalıcı bir anahtara
+çevirir; adımları bir daha yapmanız gerekmez.
+
+ALTERNATİF: UYGULAMA ŞİFRESİ (bazı hesaplarda çalışmaz)
+--------------------------------------------------------
+  • 2 Adımlı Doğrulama açık olmalı:  https://myaccount.google.com/security
+  • Şifre oluştur:  https://myaccount.google.com/apppasswords
+    Uygulama: "Diğer (özel ad)" → ad: KeepDesk → Oluştur
+  • 16 haneli şifreyi "Uygulama şifresi" sekmesine yapıştırın.
+
+Google bu yöntemi sık sık "BadAuthentication" ile reddediyor; o durumda
+tarayıcı yöntemini kullanın.
+
+ETİKETLER
+---------
+• Kenar çubuğunda bir etiketi açmak için ÇİFT TIKLAYIN (tek tık açmaz).
+• Etiketi tutup yukarı/aşağı SÜRÜKLEYEREK sırasını değiştirebilirsiniz.
+  Sıra bu cihazda hatırlanır. Yeni eklenen etiket listenin sonuna gelir.
+• Tek tık: etiketi SEÇER (satır koyulaşır, görünüm açılmaz).
+• Sağ tık: Etiketi aç / yeniden adlandır / sil.
+• Satırın sağındaki noktalı tutamaç (⠿) sürükleme içindir.
+• Aynı anda tek pencere açılır; eski sürüm açıksa otomatik kapatılır.
+
+NELER YAPILIR
+-------------
+• Not ve kontrol listesi oluşturma, düzenleme (otomatik kayıt), silme
+• Sabitleme, 12 renk, etiketler, arşiv, çöp kutusu (geri yükleme / kalıcı silme)
+• Başlık + gövde + liste öğeleri + etiketler içinde arama
+• 60 saniyede bir otomatik senkronizasyon, çevrimdışı önbellek
+
+KISAYOLLAR: Ctrl+N yeni not · Ctrl+F arama · F5 senkronize · Esc kapat
+
+VERİLER
+-------
+%APPDATA%\KeepDesk\settings.json   ayarlar + etiket sırası (anahtar DPAPI ile şifreli)
+%APPDATA%\KeepDesk\cache.json      çevrimdışı not önbelleği
+%APPDATA%\KeepDesk\keepdesk.log    günlük (sorun bildirirken bakın)
+
+SORUN GİDERME
+-------------
+• "Google'a bağlanılamadı": internet / güvenlik duvarı / proxy-VPN kontrol edin.
+• "Bu kod kabul edilmedi": kod eski veya kullanılmış. Sayfayı yenileyip yeni
+  oauth_token kopyalayın.
+• Notlar gelmiyor: sol alttaki durum yazısına bakın, F5'e basın, gerekirse
+  hesap menüsünden çıkıp yeniden giriş yapın.
+
+NOT: KeepDesk, Google'ın resmî olmayan Keep API'sini kullanır. Hatırlatıcılar,
+görsel ekler ve paylaşılan notların ortak düzenlemesi desteklenmez.
